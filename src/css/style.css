@@ -98,7 +98,8 @@ img {
 body {
   font-family: var(--bs-body-font-family);
   font-size: 18px;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 1000px;
 }
 
 a:link,
@@ -133,6 +134,9 @@ a:hover {
 
 /* Title and logo styling */
 
+a {
+  text-decoration: none;
+}
 .site-title {
   display: flex;
   align-items: center;
@@ -140,6 +144,7 @@ a:hover {
 .site-title > span {
   font-size: 1rem;
   margin-left: 0.3em;
+  color: white;
 }
 
 .logo {
@@ -152,8 +157,84 @@ a:hover {
   border-right: 13px solid transparent;
 }
 
+/* Global header */
+.global-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--bs-black);
+  fill: white;
+}
+#global-nav-toggle {
+  background-color: transparent;
+  border: transparent;
+  color: white;
+  font-size: 20px;
+  border-left: 1px solid white;
+  padding-left: 10px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.global-header-right {
+  display: flex;
+  align-items: center;
+}
+.global-header-right a {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+}
+.global-header-right .icon + span {
+  vertical-align: middle;
+}
+.global-header-right svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Middle Header */
+#banner-img {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+#middle-header{
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  position: relative;
+  bottom: 80px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0;
+}
+#banner {
+  display: flex;
+  flex-direction: row;
+}
+#banner a {
+  color: white;
+  font-size: 40px;
+  align-content: center;
+  padding-left: 10px;
+}
+#banner p {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding-left: 10px;
+  font-size: 15px;
+}
+
 /* Utility styles */
 
+.no-underline {
+  text-decoration: none;
+}
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -166,8 +247,32 @@ a:hover {
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
-
-svg {
+#park-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
   background-color: var(--bs-black);
+  position: relative;
+  bottom: 80px;
+}
+#park-header a {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+#park-header span {
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+}
+svg {
   fill: white;
+}
+.icon {
+  width: 30px;
+  height: 30px;
 }
