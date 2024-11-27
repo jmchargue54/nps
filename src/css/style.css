@@ -166,6 +166,7 @@ a {
 .global-header {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   background-color: var(--bs-black);
   fill: white;
@@ -198,6 +199,60 @@ a {
   width: 20px;
   height: 20px;
   display: block;
+}
+
+/* glabal nav */
+.global-nav {
+  width: 100%;
+  border-top: 1px solid #333;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+
+#global-nav.show {
+  width: 100%;
+  border-top: 1px solid #333;
+  overflow: hidden;
+  transition: all 0.5s;
+  max-height:150px;
+  color: white;
+  margin-left: 15px;
+}
+
+#global-nav a{
+  color: white;
+}
+
+.global-nav button {
+  background-color: transparent;
+  border: 0;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.global-nav svg {
+  --icon-color: white;
+}
+
+.global-nav-toggle--closed {
+  display: flex;
+  align-items: center;
+}
+.global-nav-toggle--open {
+  display: none;
+  align-items: center;
+}
+
+.global-nav-toggle[aria-expanded="true"] .global-nav-toggle--closed {
+  display: none;
+}
+.global-nav-toggle[aria-expanded="true"] .global-nav-toggle--open {
+  display: flex;
+}
+
+.global-nav.show {
+  max-height: 1000px;
 }
 
 /* Middle Header */

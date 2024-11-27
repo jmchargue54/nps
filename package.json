@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint *.js src/**/*.js",
+    "lint-fix": "eslint *.js src/**/*.js --fix",
     "start": "vite",
     "build": "vite build --emptyOutDir",
     "preview": "vite preview"
