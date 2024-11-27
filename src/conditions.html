@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>[Park Name]</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script type="module" src="js/main.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+    <script type="module" src="js/conditions.js" defer></script>
   </head>
   <body>
     <p class="disclaimer">
@@ -15,7 +15,7 @@
     </p>
     <div class="skip-links" aria-label="short-cut links" role="navigation">
       <ul>
-        <li>
+        <li> 
           <a
             href="#global-nav-toggle"
             aria-label="Skip to global NPS navigation"
@@ -125,8 +125,25 @@
       </section>
     </header>
     <main id="main">
-      <section class="intro"></section>
-      <section class="info"></section>
+      <h1>Current Conditions</h1>
+      <section class="alerts">
+        <H1>Alerts</H1>
+        <ul></ul>
+      </section>
+      <section class="visitor">
+        <h1>Visitor Services</h1>
+        <details name="current-details">
+          <summary>Visitor Services</summary>
+          <ul></ul>
+        </details>
+      </section>
+      <section class="activities">
+        <h1>Activities</h1>
+        <details name="current-details">
+          <summary>Activities</summary>
+          <ul></ul>
+        </details>
+      </section>
     </main>
     <img class="footer-img" src="images/topo_pattern.png" alt="footerImg">
     <footer id="park-footer"></footer>

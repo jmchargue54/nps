@@ -11,7 +11,7 @@ function setParkIntro(data) {
     <p>${data.description}</p>`;
   }
   
-  function setParkInfoLinks(data) {
+function setParkInfoLinks(data) {
     const infoEl = document.querySelector(".info");
     const html = data.map(mediaCardTemplate);
     infoEl.insertAdjacentHTML("afterbegin", html.join(""));

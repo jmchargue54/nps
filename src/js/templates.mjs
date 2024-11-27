@@ -1,3 +1,5 @@
+import spritePath from '../images/sprite.symbol.svg';
+
 // banner template
 export function parkInfoTemplate(info) {
     return `<a href="#" class="banner-title">${info.name}</a>
@@ -39,4 +41,36 @@ export function footerTemplate(info) {
         </section>`;
 }
 
+// alerts
+export function alertTemplate(alert) {
+    let alertType = "";
+    switch (alert.category) {
+        case "Park Closure":
+            alertType = "closure";
+            break;
+        default:
+            alertType = alert.category.toLowerCase();
+    }
+    return `<li class="alert">
+  <svg class="icon" focusable="false" aria-hidden="true">
+    <use xlink:href="/images/sprite.symbol.svg#alert-${alertType}"></use>
+  </svg>
+  <div>
+    <h3 class="alert-${spritePath}">${alert.title}</h3>
+    <p>${alert.description}</p>
+  </div></li>`;
+}
+
+// visitor services
+export function servicesTemplate(services) {
+    return `<li class="services">
+    <h3>${services.name}</h3>
+    <p>${services.description}</p>
+    <p>${services.directionsInfo}</p>
+  </li>`;
+}
+
+export function activitiesTemplate(activity) {
+    return activity.map((activity) =>`<li>${activity.name}</li>`).join("");
+}
 
