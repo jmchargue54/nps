@@ -207,7 +207,7 @@ a {
   border-top: 1px solid #333;
   max-height: 0;
   overflow: hidden;
-  transition: all 0.5s;
+  transition: max-height 0.5s ease;
 }
 
 #global-nav.show {
@@ -215,9 +215,8 @@ a {
   border-top: 1px solid #333;
   overflow: hidden;
   transition: all 0.5s;
-  max-height:150px;
+  max-height: 500px;
   color: white;
-  margin-left: 15px;
 }
 
 #global-nav a{
@@ -251,8 +250,71 @@ a {
   display: flex;
 }
 
-.global-nav.show {
-  max-height: 1000px;
+/* nav menu/submenu */
+/* .global-nav-submenu {
+  list-style-type: none;
+} */
+
+.global-nav__section-heading {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 1rem 0.625rem;
+  font-size: 1.25rem;
+}
+.section-heading--green {
+  color: var(--bs-light-green);
+}
+.section-heading--blue {
+  color: var(--bs-chathams-blue-3);
+}
+
+.global-nav__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid #444;
+}
+.global-nav__split-button {
+  display: flex;
+  background-color: var(--bs-gray-800);
+}
+.global-nav__split-button > a {
+  flex: 1;
+  align-self: center;
+  padding: 1rem 0.625rem;
+  display: block;
+}
+.global-nav__split-button > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.25rem;
+  border-left: 1px solid #444;
+}
+.global-nav__split-button > button:hover,
+.global-nav__split-button > a:hover {
+  background-color: var(--bs-gray-900);
+}
+
+/* Submenu styles */
+.global-nav-submenu {
+  list-style: none;
+  padding: 0;
+  font-size: 0.8em;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.global-nav-submenu.show {
+  max-height: 300px;
+}
+
+.global-nav-submenu a {
+  display: block;
+  padding: 1rem 0.625rem;
+}
+.global-nav-submenu a:hover {
+  text-decoration: underline;
 }
 
 /* Middle Header */
@@ -335,6 +397,9 @@ svg {
 .icon {
   width: 30px;
   height: 30px;
+}
+.rotate {
+  transform: rotate(180deg);
 }
 
 /* intro */
@@ -501,5 +566,29 @@ svg {
   .footer-img {
     width: 100%;
     max-width: 1000px;
+  }
+
+  .global-nav h2 {
+    display: none;
+  }
+  .global-nav-submenu,
+  .global-nav__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .global-nav__split-button {
+    background-color: inherit;
+  }
+  .global-nav__split-button > button {
+    display: none;
+  }
+  .global-nav-submenu {
+    display: flex;
+    flex-direction: column;
+    max-height: fit-content;
+  }
+  .global-nav-submenu a {
+    padding: 0.625rem;
   }
 }
