@@ -64,7 +64,7 @@ export function alertTemplate(alert) {
 // visitor services
 export function servicesTemplate(services) {
     return `<li class="services">
-    <h3>${services.name}</h3>
+    <h3><a href="visitor-center.html?id=${services.id}">${services.name}</a></h3>
     <p>${services.description}</p>
     <p>${services.directionsInfo}</p>
   </li>`;

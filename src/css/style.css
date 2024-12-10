@@ -508,6 +508,45 @@ svg {
   font-size: 1.2em;
 }
 
+/* Visitor Center */
+.vc-name {
+  border-bottom: 1px solid var(--bs-gray-400);
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+.vc-name svg {
+  width: 1em;
+  height: 1em;
+}
+.vc-info figure {
+  margin: 1em 3em;
+}
+.vc-info figcaption {
+  font-size: 0.8em;
+}
+.vc-info figcaption > span {
+  display: block;
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.vc-details-list svg,
+.vc-gallery svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 1rem;
+  fill: black;
+}
+.vc-details-list summary {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid var(--bs-gray-400);
+  padding: 0.3em;
+}
+
 /* footer */
 .footer-img {
   width: 100%;
