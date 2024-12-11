@@ -1,76 +1,145 @@
-import spritePath from '../images/sprite.symbol.svg';
-
-// banner template
 export function parkInfoTemplate(info) {
-    return `<a href="#" class="banner-title">${info.name}</a>
-    <p class="banner-subtitle">
-    <span>${info.designation}</span>
-    <span>${info.states}</span>
+  return `<a href="/" class="hero-banner__title">${info.name}</a>
+    <p class="hero-banner__subtitle">
+      <span>${info.designation}</span>
+      <span>${info.states}</span>
     </p>`;
 }
-// main content template
+
 export function mediaCardTemplate(info) {
-    return `<div class="media-card">
-          <a href="${info.link}">
-            <img class="media-img" src="${info.image}" alt="${info.name}">
-            <h1 class="media-title">${info.name}</h1>
-          </a>
-          <p>${info.description}</p>
-        </div>`;
+  return `<div class="media-card">
+    <a href="${info.link}">
+    <img src="${info.image}" alt="${info.name}" class="media-card__img">
+    <h3 class="media-card__title">${info.name}</h3>
+    </a>
+   <p>${info.description}</p>
+     </div>`;
 }
-// footer tempate
 function getMailingAddress(addresses) {
-    const mailing = addresses.find((address) => address.type === "Mailing");
-    return mailing;
+  const mailing = addresses.find((address) => address.type === "Mailing");
+  return mailing;
 }
 function getVoicePhone(numbers) {
-    const voice = numbers.find((number) => number.type === "Voice");
-    return voice.phoneNumber;
+  const voice = numbers.find((number) => number.type === "Voice");
+  return voice.phoneNumber;
 }
 export function footerTemplate(info) {
-    const mailing = getMailingAddress(info.addresses);
-    const voice = getVoicePhone(info.contacts.phoneNumbers);
+  const mailing = getMailingAddress(info.addresses);
+  const voice = getVoicePhone(info.contacts.phoneNumbers);
 
-    return `<section class="contact">
-        <h3>CONTACT INFO</h3>
-        <h4>Mailing Address:</h4>
-        <div class="city"><p>${mailing.line1}<p>
-        <p>${mailing.city}, ${mailing.stateCode} ${mailing.postalCode}</p></div>
-        <h4>Phone:</h4>
-        <p>${voice}</p>
-        </section>`;
+  return `<section class="contact">
+    <h3>Contact Info</h3>
+    <h4>Mailing Address:</h4>
+    <div><p>${mailing.line1}<p>
+    <p>${mailing.city}, ${mailing.stateCode} ${mailing.postalCode}</p></div>
+    <h4>Phone:</h4>
+    <p>${voice}</p>
+  </section>
+    `;
 }
 
-// alerts
 export function alertTemplate(alert) {
-    let alertType = "";
-    switch (alert.category) {
-        case "Park Closure":
-            alertType = "closure";
-            break;
-        default:
-            alertType = alert.category.toLowerCase();
-    }
-    return `<li class="alert">
-  <svg class="icon" focusable="false" aria-hidden="true">
-    <use xlink:href="/images/sprite.symbol.svg#alert-${alertType}"></use>
-  </svg>
+  let alertType = "";
+  // most of the alerts are one word and line up with the icons nicely. "Park Closure" is the exception
+  switch (alert.category) {
+    case "Park Closure":
+      alertType = "closure";
+      break;
+    default:
+      alertType = alert.category.toLowerCase();
+  }
+  return `<li class="alert">
+  <svg class="icon" focusable="false" aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/images/sprite.symbol.svg#alert-${alertType}"></use></svg>
   <div>
-    <h3 class="alert-${spritePath}">${alert.title}</h3>
+    <h3 class="alert-${alertType}">${alert.title}</h3>
     <p>${alert.description}</p>
   </div></li>`;
 }
 
-// visitor services
-export function servicesTemplate(services) {
-    return `<li class="services">
-    <h3><a href="visitor-center.html?id=${services.id}">${services.name}</a></h3>
-    <p>${services.description}</p>
-    <p>${services.directionsInfo}</p>
+export function visitorCenterTemplate(center) {
+  return `<li class="visitor-center">
+  <h4><a href="visitor-center.html?id=${center.id}">${center.name}</a></h4>
+  <p>${center.description}</p>
+  <p>${center.directionsInfo}</p>
   </li>`;
 }
 
-export function activitiesTemplate(activity) {
-    return activity.map((activity) =>`<li>${activity.name}</li>`).join("");
+export function activityListTemplate(activities) {
+  return activities.map((activity) => `<li>${activity.name}</li>`).join("");
 }
 
+export function iconTemplate(iconId) {
+  return `<svg class="icon" role="presentation" focusable="false">
+            <use
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              xlink:href="/images/sprite.symbol.svg#${iconId}"
+            ></use>
+          </svg>`;
+}
+
+export function vcDetailsTemplate(elementId, summaryText, iconId, content) {
+  return `<details name="vc-details" id="${elementId}">
+          <summary>
+            ${iconTemplate(iconId)}
+            ${summaryText}
+          </summary>
+          ${content}
+        </details>`;
+}
+
+export function vcTitleTemplate(text) {
+  return `${iconTemplate("ranger-station")} ${text}`;
+}
+
+export function vcInfoTemplate(data) {
+  const image = data.images[0];
+  return `<figure>
+          <img src="${image.url}" alt="${image.altText}" />
+          <figcaption>${image.caption} <span>${image.credit}</span></figcaption>
+        </figure>
+        <p>${data.description}</p>`;
+}
+export function listTemplate(data, contentTemplate) {
+  const html = data.map(contentTemplate);
+  return `<ul>${html.join("")}</ul>`;
+}
+
+function vcAddressTemplate(data) {
+  return `<section class="addressContainer">
+            <h3>${data.type} Address</h3>
+            <address>
+              ${data.line1}<br />
+              ${data.city}, ${data.stateCode} ${data.postalCode}
+            </address>
+          </section>`;
+}
+
+export function vcAddressesListTemplate(data) {
+  const physical = data.find((address) => address.type === "Physical");
+  const mailing = data.find((address) => address.type === "Mailing");
+  let html = vcAddressTemplate(physical);
+  if (mailing) {
+    html += vcAddressTemplate(mailing);
+  }
+  return html;
+}
+export function vcAmenityTemplate(data) {
+  return `<li>${data}</li>`;
+}
+export function vcDirectionsTemplate(data) {
+  return `<p id="directionsEl">${data}</p>`;
+}
+export function vcContactsTemplate(data) {
+  return `<section class="vc-contact__email">
+            <h3>Email Address</h3>
+            <a href="email:${data.emailAddresses[0].emailAddress}">Send this visitor center an email</a>
+          </section>
+          <section class="vc-contact__phone">
+            <h3>Phone numbers</h3>
+            <a href="tel:+1${data.phoneNumbers[0].phoneNumber}">${data.phoneNumbers[0].phoneNumber}</a>
+          </section>`;
+}
+
+export function vcImageTemplate(data) {
+  return `<li><img src="${data.url}" alt="${data.altText}" ><li>`;
+}

@@ -1,6 +1,3 @@
-const baseUrl = "https://developer.nps.gov/api/v1/";
-const apiKey = import.meta.env.VITE_NPS_API_KEY;
-
 const park = {
   id: "F58C6D24-8D10-4573-9826-65D42B8B83AD",
   url: "https://www.nps.gov/yell/index.htm",
@@ -181,7 +178,6 @@ const park = {
   name: "Yellowstone",
   designation: "National Park"
 };
-
 const parkInfoLinks = [
   {
     name: "Current Conditions &#x203A;",
@@ -204,17 +200,8 @@ const parkInfoLinks = [
   }
 ];
 
-export function getParkInfoLinks() {
-  return parkInfoLinks;
-}
-
-export function getInfoLinks(data) {
-const withUpdatedImages = parkInfoLinks.map((linkInfo, index) => {
-  linkInfo.image = data[index + 2].url;
-  return linkInfo;
-});
-return withUpdatedImages;
-}
+const baseUrl = "https://developer.nps.gov/api/v1/";
+const apiKey = import.meta.env.VITE_NPS_API_KEY;
 
 async function getJson(url) {
   const options = {
@@ -231,22 +218,31 @@ async function getJson(url) {
   return data;
 }
 
+export function getInfoLinks(data) {
+  // Why index + 2 below? no real reason. we don't want index 0 since that is the one we used for the banner...I decided to skip an image.
+  const withUpdatedImages = parkInfoLinks.map((item, index) => {
+    item.image = data[index + 1].url;
+    return item;
+  });
+  return withUpdatedImages; 
+}
+
 export async function getParkData() {
-  const parkData = await getJson("parks?parkCode=glac");
+  const parkData = await getJson("parks?parkCode=acadia");
   return parkData.data[0];
 }
 
-export async function getAlertData() {
-  const alertData = await getJson("alerts?parkCode=glac");
-  return alertData.data;
+export async function getParkAlerts(code) {
+  const parkData = await getJson(`alerts?parkCode=${code}`);
+  return parkData.data;
 }
 
-export async function getVisitorCenterData() {
-  const visitorCenterData = await getJson("visitorcenters?parkCode=glac")
-  return visitorCenterData.data;
+export async function getParkVisitorCenters(code) {
+  const parkData = await getJson(`visitorcenters?parkCode=${code}`);
+  return parkData.data;
 }
 
-export async function getParkVisitorCenterDetials(id) {
+export async function getParkVisitorCenterDetails(id) {
   const parkData = await getJson(`visitorcenters?id=${id}`);
-  return parkData;
+  return parkData.data[0];
 }
