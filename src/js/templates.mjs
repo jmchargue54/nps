@@ -1,3 +1,7 @@
+import spriteUrl from '/images/sprite.symbol.svg';
+document.querySelector('main').src = spriteUrl;
+
+
 export function parkInfoTemplate(info) {
   return `<a href="/" class="hero-banner__title">${info.name}</a>
     <p class="hero-banner__subtitle">
@@ -72,7 +76,7 @@ export function iconTemplate(iconId) {
   return `<svg class="icon" role="presentation" focusable="false">
             <use
               xmlns:xlink="http://www.w3.org/1999/xlink"
-              xlink:href="/images/sprite.symbol.svg#${iconId}"
+              xlink:href="${spriteUrl}#${iconId}"
             ></use>
           </svg>`;
 }
