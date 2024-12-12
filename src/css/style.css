@@ -233,6 +233,9 @@ a {
 .global-nav svg {
   --icon-color: white;
 }
+#park-header svg {
+  fill: white;
+}
 
 .global-nav-toggle--closed {
   display: flex;
@@ -391,9 +394,9 @@ a {
   text-decoration: none;
   font-size: 15px;
 }
-svg {
+/* svg {
   fill: white;
-}
+} */
 .icon {
   width: 30px;
   height: 30px;
@@ -597,9 +600,6 @@ svg {
   height: 1.25rem;
   margin-left: auto; /* Push the arrow to the right */
   transition: transform 0.3s ease; /* Optional: add a smooth rotation */
-}
-.icon {
-  fill: black;
 }
 
 /* Optional: Rotate the arrow when the details are open */
