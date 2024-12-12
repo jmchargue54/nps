@@ -67,7 +67,7 @@ function buildPage(data) {
       "heading-icon_info",
       amenitiesHTML
     )
-  );
+  ); 
   const arrowAmenities = document.querySelector('#vcAmenities summary')
   arrowAmenities.insertAdjacentHTML("beforeend", arrowsTemplate());
 
