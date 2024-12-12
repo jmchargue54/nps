@@ -11,11 +11,12 @@ import {
   vcDirectionsTemplate,
   vcContactsTemplate
 } from "./templates.mjs";
-// import 
+import spriteUrl from '/images/sprite.symbol.svg';
+document.querySelector('main').src = spriteUrl;
 
 function arrowsTemplate() {
   return `<svg class="arrow">
-            <use href="images/sprite.symbol.svg#arrow"></use>
+            <use href="${spriteUrl}#arrow"></use>
           </svg>  
 `
 }
