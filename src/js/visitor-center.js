@@ -12,6 +12,13 @@ import {
   vcContactsTemplate
 } from "./templates.mjs";
 
+function arrowsTemplate() {
+  return `<svg class="arrow">
+            <use href="images/sprite.symbol.svg#arrow"></use>
+          </svg>  
+`
+}
+
 function getParam(param) {
   const search = location.search;
   const params = new URLSearchParams(search);
@@ -35,6 +42,8 @@ function buildPage(data) {
       addressHTML
     )
   );
+  const arrowAddress = document.querySelector('#vcAddresses summary')
+  arrowAddress.insertAdjacentHTML("beforeend", arrowsTemplate());
   // directions
   detailsEl.insertAdjacentHTML(
     "beforeend",
@@ -45,6 +54,9 @@ function buildPage(data) {
       vcDirectionsTemplate(data.directionsInfo)
     )
   );
+  const arrowDirection = document.querySelector('#vcDirections summary')
+  arrowDirection.insertAdjacentHTML("beforeend", arrowsTemplate());
+
   // amenities section.
   const amenitiesHTML = listTemplate(data.amenities, vcAmenityTemplate);
   detailsEl.insertAdjacentHTML(
@@ -56,12 +68,18 @@ function buildPage(data) {
       amenitiesHTML
     )
   );
+  const arrowAmenities = document.querySelector('#vcAmenities summary')
+  arrowAmenities.insertAdjacentHTML("beforeend", arrowsTemplate());
+
   // contact section
   const contactHTML = vcContactsTemplate(data.contacts);
   detailsEl.insertAdjacentHTML(
     "beforeend",
     vcDetailsTemplate("vcContacts", "Contacts", "phone", contactHTML)
   );
+  const arrowContacts = document.querySelector('#vcContacts summary')
+  arrowContacts.insertAdjacentHTML("beforeend", arrowsTemplate());
+
   // gallery section
   const galleryHTML = listTemplate(data.images, vcImageTemplate);
   document

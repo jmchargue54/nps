@@ -593,10 +593,16 @@ svg {
 }
 
 .arrow {
-  z-index: 100;
-  fill: black;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: auto; /* Push the arrow to the right */
+  transition: transform 0.3s ease; /* Optional: add a smooth rotation */
 }
 
+/* Optional: Rotate the arrow when the details are open */
+details[open] .arrow {
+  transform: rotate(180deg);
+}
 /* .vc-details-list summary::after {
   content: "";
   position: absolute;
