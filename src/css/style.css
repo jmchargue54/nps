@@ -598,6 +598,9 @@ svg {
   margin-left: auto; /* Push the arrow to the right */
   transition: transform 0.3s ease; /* Optional: add a smooth rotation */
 }
+.icon {
+  fill: black;
+}
 
 /* Optional: Rotate the arrow when the details are open */
 details[open] .arrow {
